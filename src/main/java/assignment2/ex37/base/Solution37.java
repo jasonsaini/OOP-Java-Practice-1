@@ -6,12 +6,15 @@ package assignment2.ex37.base;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Solution37 {
     private static Scanner in = new Scanner(System.in);
+
     public static void main(String args[])
     {
 
+        System.out.println("Welcome to password generator! \nRemember to leave room for extra letters after special characters and numbers.");
         PasswordGenerator generator = new PasswordGenerator();
 
         System.out.print("What is the minimum length? ");
@@ -22,6 +25,17 @@ public class Solution37 {
 
         System.out.print("How many numbers? ");
         int numCount = in.nextInt();
+
+        if(minLength <= numCount+ numSpecialChars)
+        {
+            System.out.println("Make sure you leave room for letters!");
+            return;
+        }
+        else if(minLength < numCount || minLength < numSpecialChars)
+        {
+            System.out.println("Cannot exceed minimum length!");
+            return;
+        }
 
         char[] potentialPassword = generator.generatePassword(minLength,numSpecialChars,numCount);
         String password = new String(potentialPassword);
